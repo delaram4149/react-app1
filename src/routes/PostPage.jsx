@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import {  Outlet } from 'react-router-dom'
+import PostList2 from '../components/PostList2'
 
 const PostPage = () => {
     const [post, setPost]=useState([])
@@ -28,14 +30,11 @@ console.log(err);
         fetchPost()
     },[])
   return (
-    <div>
+    <div className='grid grid-cols-9 gap-2'>
         {isPending ? 'loading...' : 
-         <ul>
-         {post.map(({title,id})=>{
-           return  <li id={id}>{title}</li>
-         })}
-     </ul>
+  <PostList2 posts={post}/>
         }
+        <Outlet/>
 
     </div>
   )
